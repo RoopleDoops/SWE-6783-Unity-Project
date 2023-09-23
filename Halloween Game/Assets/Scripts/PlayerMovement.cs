@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private float dirHori = 0f;
     [SerializeField] private float moveSpeed = 7f; //[SerializeField] lets you edit value in the unity editor
     [SerializeField] private float jumpForce = 14f;
+    private float hitForce = 6f;
 
 
     private enum MovementState
@@ -49,6 +50,12 @@ public class PlayerMovement : MonoBehaviour
 
         //UpdateAnimationState();
 
+    }
+
+    // Launches player upwards slightly on hazard collision
+    public void hitJump()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, hitForce);
     }
 
     private void UpdateAnimationState()
