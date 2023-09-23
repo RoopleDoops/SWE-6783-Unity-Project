@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
     }
 
@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
 
-        UpdateAnimationState();
+        //UpdateAnimationState();
 
     }
 
