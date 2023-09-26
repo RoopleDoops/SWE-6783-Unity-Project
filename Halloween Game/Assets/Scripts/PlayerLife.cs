@@ -47,7 +47,7 @@ public class PlayerLife : MonoBehaviour
     }
 
     // Resets current scene
-    private void killPlayer()
+    public void killPlayer()
     {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
@@ -58,5 +58,9 @@ public class PlayerLife : MonoBehaviour
     {
         Color newCol = new Color(sprite.color.r, sprite.color.g, sprite.color.b, alpha);
         sprite.color = newCol;
+    }
+    public int getCurrentHealth()
+    {
+        return health; 
     }
 }
