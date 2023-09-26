@@ -7,7 +7,10 @@ public class LevelTransition : MonoBehaviour
 {
     public void loadNextLevel(int levelNumber)
     {
-        SceneManager.LoadScene(levelNumber);
+        if (levelNumber < 0)
+        {
+            SceneManager.LoadScene(levelNumber);
+        }
     }
     public void reloadCurrentLevel()
     {
