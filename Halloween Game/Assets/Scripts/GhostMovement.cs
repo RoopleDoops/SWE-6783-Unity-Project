@@ -6,38 +6,34 @@ public class GhostMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private BoxCollider2D col;
+    private Transform ghost;
+    private Transform player;
 
     [SerializeField] private LayerMask solidWall;
 
-    [SerializeField] private float moveSpeed = 4f;
-    private float dirHori = 1f; // initial direction of x-axis movement
+    [SerializeField] private float moveSpeed = 2f;
     
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
+        ghost = GetComponent<Transform>();
+        player = GameObject.Find("Player").GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 moveVec = new Vector2(dirHori * moveSpeed, rb.velocity.y);
-        if (hitWall())
-        {
-            dirHori = -dirHori; //flip direction
-        }
-        else
-        {
-            rb.velocity = moveVec; // commit to movement
-        }
+        // Move towrads player
+        ChasePlayer();
     }
 
-    private bool hitWall()
+    private void ChasePlayer()
     {
-        Vector2 dirVec = Vector2.right;
-        if (dirHori == -1) dirVec = Vector2.left;
+        Vector2 pPos = player.position;
+        Vector2 gPos = ghost.position;
 
-        return Physics2D.BoxCast(col.bounds.center, col.bounds.size*0.9f, 0f, dirVec, 0.1f, solidWall);
+        ghost.position = Vector2.MoveTowards(gPos, pPos, moveSpeed * Time.deltaTime);
     }
 }
