@@ -47,10 +47,13 @@ public class SkeletonMovement : MonoBehaviour
 
     private bool onGround()
     {
-        float width = col.size.x * 0.5f;
-        Vector2 rayPos = new Vector2(rb.position.x + (dirHori*width), rb.position.y);
-        return (Physics2D.Raycast(rayPos, Vector2.down, 1f, solidWall));
-        //return (Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0f, Vector2.down, 0.1f, solidWall));
+        Vector2 pos = new Vector2();
+        // Check side in direction of movement to prevent enemy getting stuck.
+        if (dirHori == 1) pos = new Vector2(rb.position.x + col.bounds.extents.x, rb.position.y);
+        else pos = new Vector2(rb.position.x - col.bounds.extents.x, rb.position.y);
+        
+        Vector2 size = new Vector2(0.1f, col.bounds.extents.y);
+        return Physics2D.BoxCast(pos, size, 0f, Vector2.down, 0.1f, solidWall);
     }
 
     private void SpriteUpdate()

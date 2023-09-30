@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer sprite;
     private float dirHori = 0f;
     [SerializeField] private float moveSpeed = 6f; //[SerializeField] lets you edit value in the unity editor
-    [SerializeField] private float jumpForce = 12f;
+    [SerializeField] private float jumpForce = 13f;
     private bool isJumping = false;
     private float hitForce = 6f;
 

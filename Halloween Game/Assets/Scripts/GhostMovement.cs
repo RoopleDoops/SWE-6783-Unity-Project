@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GhostMovement : MonoBehaviour
@@ -9,9 +10,9 @@ public class GhostMovement : MonoBehaviour
     private Transform ghost;
     private SpriteRenderer sprite;
     private Transform player;
-
+    private Vector2 targetPos;
     [SerializeField] private LayerMask solidWall;
-    [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private float moveSpeed = 1.5f;
     
     // Start is called before the first frame update
     void Start()
@@ -34,10 +35,12 @@ public class GhostMovement : MonoBehaviour
 
     private void ChasePlayer()
     {
+        // Slowly lerp towards player position
         Vector2 pPos = player.position;
         Vector2 gPos = ghost.position;
+        targetPos = Vector2.Lerp(targetPos, pPos, 0.01f);
 
-        ghost.position = Vector2.MoveTowards(gPos, pPos, moveSpeed * Time.deltaTime);
+        ghost.position = Vector2.MoveTowards(gPos, targetPos, moveSpeed * Time.deltaTime);
     }
 
     private void UpdateSprite()
