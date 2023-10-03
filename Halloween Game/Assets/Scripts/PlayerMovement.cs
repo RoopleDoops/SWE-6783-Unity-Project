@@ -13,8 +13,11 @@ public class PlayerMovement : MonoBehaviour
 
     private SpriteRenderer sprite;
     private float dirHori = 0f;
-    [SerializeField] private float moveSpeed = 6f; //[SerializeField] lets you edit value in the unity editor
+    [SerializeField] private float moveSpeed = 7f; //[SerializeField] lets you edit value in the unity editor
+    [SerializeField] private float acceleration = 0.1f;
+    [SerializeField] private float decceleration = 0.05f;
     [SerializeField] private float jumpForce = 13f;
+    private float xMove = 0f;
     private bool isJumping = false;
     private float hitForce = 6f;
 
@@ -42,7 +45,20 @@ public class PlayerMovement : MonoBehaviour
     {
         dirHori = Input.GetAxisRaw("Horizontal"); //GetAxisRaw (as opposed to GetAxis()) drops axis to 0 immediately (makes player stop moving after release)
 
-        rb.velocity = new Vector2(dirHori * moveSpeed, rb.velocity.y); // create movement vector based on axis input
+        if (dirHori != 0)
+        {
+            xMove = dirHori * moveSpeed;
+            //xMove = Mathf.MoveTowards(xMove, dirHori * moveSpeed, acceleration);
+        }
+        else
+        {
+            // slow to a stop
+            xMove = 0f;
+            //xMove = Mathf.MoveTowards(xMove, 0f, decceleration);
+        }
+
+        //rb.velocity = new Vector2(xMove * Time.deltaTime, rb.velocity.y); // create movement vector based on axis input
+        rb.velocity = new Vector2(xMove, rb.velocity.y); // create movement vector based on axis input
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
@@ -71,14 +87,14 @@ public class PlayerMovement : MonoBehaviour
     public void StartJump()
     {
         isJumping = true;
-        Debug.Log("JUMP START");
+        // Debug.Log("JUMP START");
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
     }
     // Ends player jump and increases gravity
     public void EndJump()
     {
         isJumping = false;
-        Debug.Log("JUMP END");
+        // Debug.Log("JUMP END");
     }
 
     // Launches player upwards slightly on hazard collision
@@ -122,6 +138,7 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGrounded()
     {
         // returns true if collision with jumpableGround LayerMask is found
-        return Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
+        bool check = Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
+        return check;
     }
 }
