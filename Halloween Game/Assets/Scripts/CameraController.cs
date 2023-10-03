@@ -17,6 +17,6 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         // position cannot simply be player position since the z-axis is different.
-        transform.position = new Vector3(player.position.x, player.position.y+yBuffer, transform.position.z);
+        //transform.position = new Vector3(player.position.x, player.position.y+yBuffer, transform.position.z);
     }
 }
