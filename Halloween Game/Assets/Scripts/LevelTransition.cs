@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class LevelTransition : MonoBehaviour
 {
+    public PlayerLife life;
+    public LevelTransition transition;
+    public ItemCollector collector;
+
     public void loadNextLevel(int levelNumber)
     {
         if (levelNumber < 0)
@@ -18,14 +22,14 @@ public class LevelTransition : MonoBehaviour
     }
     public void resetCounters() 
     {
-        //reset ui elements 
+         
     }
     public void resetHealth()
     {
-
+        life.setCurrentHealth(3);
     }
     public void resetCollectables()
     {
-       //resetCollectables 
+        collector.setCandies(0);
     }
 }

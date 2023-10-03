@@ -6,7 +6,9 @@ using UnityEngine;
 public class Winstate : MonoBehaviour
 {
     const int maxLevel1Candies = 1;
+    private int currentLvl = 1;
     public ItemCollector itemCollector;
+    public LevelTransition levelTransition;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +18,10 @@ public class Winstate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        checkForAllItems();
+        if (checkForAllItems()) 
+        {
+            levelTransition.loadNextLevel(currentLvl++);
+        };
     }
     bool checkForAllItems()
     { 

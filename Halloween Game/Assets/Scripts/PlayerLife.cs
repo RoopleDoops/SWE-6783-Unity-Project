@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -62,5 +63,9 @@ public class PlayerLife : MonoBehaviour
     public int getCurrentHealth()
     {
         return health; 
+    }
+    public void setCurrentHealth(int sentHealth)
+    {
+        health = sentHealth;
     }
 }
