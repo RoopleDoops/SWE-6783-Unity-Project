@@ -20,4 +20,9 @@ public class ItemCollector : MonoBehaviour
             candiesText.text = candies.ToString();
         }
     }
+
+    public int getCandies()
+    {
+        return candies;
+    }
 }

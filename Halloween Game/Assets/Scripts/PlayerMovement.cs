@@ -13,8 +13,9 @@ public class PlayerMovement : MonoBehaviour
 
     private SpriteRenderer sprite;
     private float dirHori = 0f;
-    [SerializeField] private float moveSpeed = 7f; //[SerializeField] lets you edit value in the unity editor
-    [SerializeField] private float jumpForce = 14f;
+    [SerializeField] private float moveSpeed = 6f; //[SerializeField] lets you edit value in the unity editor
+    [SerializeField] private float jumpForce = 13f;
+    private bool isJumping = false;
     private float hitForce = 6f;
 
 
@@ -45,11 +46,39 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            StartJump();
+        }
+
+        // Variable jump height code
+        if (isJumping) 
+        {
+            if (rb.velocity.y >= 0f && !Input.GetButton("Jump"))
+            {
+                // cut player y velocity if jump key is released and still moving upwards
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y / 2);
+                EndJump();
+            }
+            else if (rb.velocity.y <= 0f && IsGrounded())
+            {
+                EndJump();
+            }
         }
 
         //UpdateAnimationState();
 
+    }
+
+    public void StartJump()
+    {
+        isJumping = true;
+        Debug.Log("JUMP START");
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+    }
+    // Ends player jump and increases gravity
+    public void EndJump()
+    {
+        isJumping = false;
+        Debug.Log("JUMP END");
     }
 
     // Launches player upwards slightly on hazard collision
