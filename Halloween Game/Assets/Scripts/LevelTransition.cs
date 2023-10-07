@@ -5,24 +5,32 @@ using UnityEngine.SceneManagement;
 
 public class LevelTransition : MonoBehaviour
 {
+    public PlayerLife life;
+    public LevelTransition transition;
+    public ItemCollector collector;
+
     public void loadNextLevel(int levelNumber)
     {
-        SceneManager.LoadScene(levelNumber);
+        if (levelNumber > 0)
+        {
+            SceneManager.LoadScene("Level_0" + levelNumber);
+        }
     }
     public void reloadCurrentLevel()
     {
-
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
-    public void resetCounters() 
+    public void resetCounters()
     {
-        //reset ui elements 
+        //reset scoreboard, ui elements 
     }
     public void resetHealth()
     {
-
+        life.setCurrentHealth(3);
     }
     public void resetCollectables()
     {
-       //resetCollectables 
+        collector.setCandies(0);
     }
 }

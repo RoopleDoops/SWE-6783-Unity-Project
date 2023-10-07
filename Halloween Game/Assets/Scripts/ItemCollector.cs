@@ -25,4 +25,8 @@ public class ItemCollector : MonoBehaviour
     {
         return candies;
     }
+    public void setCandies(int sentCandies)
+    {
+        candies = sentCandies;
+    }
 }

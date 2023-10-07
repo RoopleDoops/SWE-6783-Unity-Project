@@ -9,11 +9,14 @@ public class Failstate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (checkForCurrentHealth() == false|| checkForRemainingTime() == false)
+        if (checkForCurrentHealth() == false || checkForRemainingTime() == false)
         {
-            life.killPlayer();  
+            life.killPlayer();
+            transition.reloadCurrentLevel();
+            transition.resetHealth();
+            transition.resetCollectables();
         }
-        
+
     }
 
     bool checkForCurrentHealth()

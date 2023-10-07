@@ -63,4 +63,8 @@ public class PlayerLife : MonoBehaviour
     {
         return health; 
     }
+    public void setCurrentHealth(int sentHealth)
+    {
+        health = sentHealth;
+    }
 }
