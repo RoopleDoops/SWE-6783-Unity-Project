@@ -6,7 +6,7 @@ public class Timer : MonoBehaviour
 {
 
     float currTme = 0f;
-    float startTme = 60f;
+    float startTme = 30f;
     // Start is called before the first frame update
 
     [SerializeField] Text Time_clock;
@@ -22,6 +22,10 @@ public class Timer : MonoBehaviour
         currTme -= 1 * Time.deltaTime;
         Time_clock.text = currTme.ToString("Time: 0");
 
+        if (currTme <= 10)
+        {
+            Time_clock.color = Color.red;
+        }
         if (currTme <= 0)
 
         {
