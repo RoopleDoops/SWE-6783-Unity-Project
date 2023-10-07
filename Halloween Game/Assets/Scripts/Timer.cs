@@ -20,7 +20,7 @@ public class Timer : MonoBehaviour
     void Update()
     {
         currTme -= 1 * Time.deltaTime;
-        Time_clock.text = currTme.ToString();
+        Time_clock.text = currTme.ToString("Time: 0");
 
         if (currTme <= 0)
 
