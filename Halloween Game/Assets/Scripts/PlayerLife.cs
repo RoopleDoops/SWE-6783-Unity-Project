@@ -23,7 +23,7 @@ public class PlayerLife : MonoBehaviour
     void Start()
     {
         move = GetComponent<PlayerMovement>();
-        sprite = GetComponent<SpriteRenderer>();
+        sprite = GameObject.Find("PlayerSprite").GetComponent<SpriteRenderer>();
         bCollider = GetComponent<BoxCollider2D>();
     }
 

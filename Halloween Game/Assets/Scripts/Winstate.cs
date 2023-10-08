@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class Winstate : MonoBehaviour
 {
     const int maxLevel1Candies = 5;
-    private int currentLvl = 1;
+    private int currentLvl = 0;
     Dictionary<string, int> levelCandies = new Dictionary<string, int>
         {
             { "level 1", 5 },
