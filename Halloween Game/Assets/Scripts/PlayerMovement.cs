@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isJumping = false;
     private float hitForce = 6f;
 
+    //Audio add in
+    [SerializeField] private AudioSource jumpSoundEffect;
 
     private enum MovementState
     {
@@ -89,6 +91,8 @@ public class PlayerMovement : MonoBehaviour
         isJumping = true;
         // Debug.Log("JUMP START");
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        //play jump effect
+        jumpSoundEffect.Play();
     }
     // Ends player jump and increases gravity
     public void EndJump()

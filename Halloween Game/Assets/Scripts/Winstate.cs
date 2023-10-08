@@ -18,6 +18,8 @@ public class Winstate : MonoBehaviour
         };
     public ItemCollector itemCollector;
     public LevelTransition levelTransition;
+    private bool won;
+
     private void Start()
     {
         Scene currentScene = SceneManager.GetActiveScene();
@@ -27,11 +29,11 @@ public class Winstate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (checkForAllItems())
+        if (checkForAllItems() && !won)
         {
-            currentLvl += 1;
-            levelTransition.loadNextLevel(currentLvl);
-        };
+            won = true;
+            StartCoroutine(playerWin()); //waits before moving to next level "animation" and sound
+        }
     }
     bool checkForAllItems()
     {
@@ -40,5 +42,13 @@ public class Winstate : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    private IEnumerator playerWin()
+    {
+        itemCollector.win();
+        yield return new WaitForSeconds(3f);
+        currentLvl += 1;
+        levelTransition.loadNextLevel(currentLvl);
     }
 }
