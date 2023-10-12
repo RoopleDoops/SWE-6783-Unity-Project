@@ -7,14 +7,24 @@ public class PlayerLife : MonoBehaviour
 {
     private PlayerMovement move;
     private SpriteRenderer sprite;
+    private BoxCollider2D bCollider;
     private int health = 3;
+    private bool dead;
     private float iTime = 0;
     [SerializeField] private float iTimeMax = 1f; // length of player invincibility after getting hit
+
+    //Audio add in
+    [SerializeField] 
+    private AudioSource hitSoundEffect;
+    [SerializeField] 
+    private AudioSource lossSoundEffect;
+
     // Start is called before the first frame update
     void Start()
     {
         move = GetComponent<PlayerMovement>();
-        sprite = GetComponent<SpriteRenderer>();
+        sprite = GameObject.Find("PlayerSprite").GetComponent<SpriteRenderer>();
+        bCollider = GetComponent<BoxCollider2D>();
     }
 
     private void Update()
@@ -42,17 +52,25 @@ public class PlayerLife : MonoBehaviour
             iTime = iTimeMax;
             // Reduce health and resolve
             health -= 1;
-            if (health <= 0) killPlayer();
+            //play hit effect
+            hitSoundEffect.Play();
         }
     }
 
-    // Resets current scene
-    public void killPlayer()
+    //Resetting happens in Failstate
+    public void killPlayer() 
     {
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        Destroy(GameObject.Find("BGM"));
+        dead = true;
+        bCollider.enabled = false; //player falls through ground
+        move.enabled = false; //player loses control
+        lossSoundEffect.Play();
     }
 
+    public bool isDead()
+    {
+        return dead;
+    }
     // Alters player's sprite alpha
     private void changeAlpha(float alpha)
     {

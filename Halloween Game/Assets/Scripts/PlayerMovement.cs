@@ -14,13 +14,19 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer sprite;
     private float dirHori = 0f;
     [SerializeField] private float moveSpeed = 7f; //[SerializeField] lets you edit value in the unity editor
-    [SerializeField] private float acceleration = 0.1f;
-    [SerializeField] private float decceleration = 0.05f;
+    //[SerializeField] private float acceleration = 0.1f;
+    //[SerializeField] private float decceleration = 0.05f;
     [SerializeField] private float jumpForce = 13f;
     private float xMove = 0f;
+    private bool inAir = false;
     private bool isJumping = false;
     private float hitForce = 6f;
 
+    float animateTime = 0f;
+    float animateTimeMax = 1.5f;
+
+    //Audio add in
+    [SerializeField] private AudioSource jumpSoundEffect;
 
     private enum MovementState
     {
@@ -37,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
         //anim = GetComponent<Animator>();
-        sprite = GetComponent<SpriteRenderer>();
+        sprite = GameObject.Find("PlayerSprite").GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -60,7 +66,18 @@ public class PlayerMovement : MonoBehaviour
         //rb.velocity = new Vector2(xMove * Time.deltaTime, rb.velocity.y); // create movement vector based on axis input
         rb.velocity = new Vector2(xMove, rb.velocity.y); // create movement vector based on axis input
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+
+        if (IsGrounded())
+        {
+            if (inAir)
+            {
+                animateSquash();
+                inAir = false;
+            }
+        }
+        else inAir = true;
+
+        if (Input.GetButtonDown("Jump") && !inAir)
         {
             StartJump();
         }
@@ -74,21 +91,26 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y / 2);
                 EndJump();
             }
-            else if (rb.velocity.y <= 0f && IsGrounded())
+            else if (rb.velocity.y <= 0f && !inAir)
             {
                 EndJump();
             }
         }
 
-        //UpdateAnimationState();
+        
+
+        animateStep();
 
     }
 
     public void StartJump()
     {
+        animateStretch();
         isJumping = true;
         // Debug.Log("JUMP START");
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        //play jump effect
+        jumpSoundEffect.Play();
     }
     // Ends player jump and increases gravity
     public void EndJump()
@@ -132,7 +154,27 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Sets animation state variable within Unity
-        anim.SetInteger("state", (int)state);
+        //anim.SetInteger("state", (int)state);
+    }
+
+    private void animateStep()
+    {
+        animateTime += Time.deltaTime;
+        Vector3 currentSize = sprite.transform.localScale;
+        Vector3 targetSize = new Vector3(1f, 1f, currentSize.z);
+        sprite.transform.localScale = Vector3.Lerp(currentSize, targetSize, animateTime/animateTimeMax);
+    }
+
+    private void animateStretch()
+    {
+        animateTime = 0f;
+        sprite.transform.localScale = new Vector3(0.7f, 1.3f, sprite.transform.localScale.z);
+    }
+
+    private void animateSquash()
+    {
+        animateTime = 0f;
+        sprite.transform.localScale = new Vector3(1.3f, 0.7f, sprite.transform.localScale.z);
     }
 
     private bool IsGrounded()

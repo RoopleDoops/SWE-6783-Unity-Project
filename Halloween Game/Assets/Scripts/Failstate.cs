@@ -9,16 +9,20 @@ public class Failstate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (checkForCurrentHealth() == false || checkForRemainingTime() == false)
+        if ((checkForCurrentHealth() == false || checkForRemainingTime() == false) && !life.isDead())
         {
-            life.killPlayer();
-            transition.reloadCurrentLevel();
-            transition.resetHealth();
-            transition.resetCollectables();
+            StartCoroutine(playerDeath()); //waits before resetting for death "animation" and sound
         }
 
     }
-
+    private IEnumerator playerDeath()
+    {
+        life.killPlayer();
+        yield return new WaitForSeconds(1.5f);
+        transition.reloadCurrentLevel();
+        transition.resetHealth();
+        transition.resetCollectables();
+    }
     bool checkForCurrentHealth()
     {
         if (life.getCurrentHealth() > 0)
