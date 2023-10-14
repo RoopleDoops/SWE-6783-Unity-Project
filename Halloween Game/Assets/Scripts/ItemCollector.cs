@@ -6,6 +6,13 @@ using UnityEngine.UI;
 //put this script on the player
 public class ItemCollector : MonoBehaviour
 {
+    public GameObject candy;
+    public GameObject candy2;
+    public GameObject candy3;
+    public GameObject candy4;
+    public GameObject candy5;
+    
+
     private int candies = 0;
 
     private PlayerMovement move;
@@ -33,8 +40,38 @@ public class ItemCollector : MonoBehaviour
             collectableGet.Play();
             Destroy(collision.gameObject);
             candies++;
-            candiesText.text = candies.ToString();
+            //candiesText.text = candies.ToString();
+            if (candies == 1)
+            {
+                candy.SetActive(true);
+
+            }
+
+            else if (candies == 2)
+            {
+                candy2.SetActive(true);
+
+            }
+
+            else if (candies == 3)
+            {
+                candy3.SetActive(true);
+
+            }
+
+            else if (candies == 4)
+            {
+                candy4.SetActive(true);
+
+            }
+
+            else if (candies == 5)
+            {
+                candy5.SetActive(true);
+            }
+            
         }
+        
     }
     public void win()
     {
@@ -43,7 +80,6 @@ public class ItemCollector : MonoBehaviour
         move.enabled = false; //player loses control
         winSound.Play();
     }
-
     public int getCandies()
     {
         return candies;
