@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-void ReduceLife(int damage)
+    void ReduceLife(int damage)
 
     {
         curr_health -= damage;
