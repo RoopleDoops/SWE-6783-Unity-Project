@@ -6,6 +6,7 @@ public class Failstate : MonoBehaviour
 {
     public PlayerLife life;
     public LevelTransition transition;
+    public Timer timer;
     // Update is called once per frame
     void Update()
     {
@@ -33,6 +34,9 @@ public class Failstate : MonoBehaviour
     }
     bool checkForRemainingTime()
     {
-        return true;
+       if(timer.getCurrentTime() != 0) { 
+            return true;
+        }
+       return false;
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 public class Timer : MonoBehaviour
@@ -32,5 +33,9 @@ public class Timer : MonoBehaviour
             currTme = 0;
 
         }
+    }
+    public float getCurrentTime()
+    {
+        return currTme;
     }
 }

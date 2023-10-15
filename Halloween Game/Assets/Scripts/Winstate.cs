@@ -12,9 +12,9 @@ public class Winstate : MonoBehaviour
     private int currentLvl = 0;
     Dictionary<string, int> levelCandies = new Dictionary<string, int>
         {
-            { "level 1", 5 },
-            { "level 2", 5 },
-            { "level 3", 5 }
+            { "1", 5 },
+            { "2", 5 },
+            { "3", 5 }
         };
     public ItemCollector itemCollector;
     public LevelTransition levelTransition;
@@ -29,10 +29,15 @@ public class Winstate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(currentLvl == 3 && checkForAllItems() && !won)
+        {
+            won = true;
+            StartCoroutine(playerWinGame());
+        }
         if (checkForAllItems() && !won)
         {
             won = true;
-            StartCoroutine(playerWin()); //waits before moving to next level "animation" and sound
+            StartCoroutine(playerWinLevel()); //waits before moving to next level "animation" and sound
         }
     }
     bool checkForAllItems()
@@ -44,11 +49,18 @@ public class Winstate : MonoBehaviour
         return false;
     }
 
-    private IEnumerator playerWin()
+    private IEnumerator playerWinLevel()
     {
         itemCollector.win();
         yield return new WaitForSeconds(3f);
         currentLvl += 1;
+        levelTransition.loadNextLevel(currentLvl);
+    }
+    private IEnumerator playerWinGame()
+    {
+        itemCollector.win();
+        yield return new WaitForSeconds(3f);
+        currentLvl = 1;
         levelTransition.loadNextLevel(currentLvl);
     }
 }
