@@ -290,6 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemCollector: {fileID: 795386034}
   levelTransition: {fileID: 247852711}
+  timer: {fileID: 366948428}
 --- !u!114 &247852713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,7 +305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: {fileID: 795386035}
   transition: {fileID: 247852711}
-  timer: {fileID: 1443549437}
+  timer: {fileID: 366948428}
 --- !u!4 &247852714
 Transform:
   m_ObjectHideFlags: 0
@@ -359,6 +360,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1966232860346313599, guid: a7daece09ef5b864fb3700d46608d77a, type: 3}
   m_PrefabInstance: {fileID: 902263836}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &366948428 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 263608941878432788, guid: 116df455b82374f3fbe1c59261668e17, type: 3}
+  m_PrefabInstance: {fileID: 1443549436}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 424cd0fcfe6204042b743702814b007b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &440511190
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,6 +612,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6686552585847221219, guid: cb3794c958c4dd64eaf0542ee6a2c1d5, type: 3}
+      propertyPath: healthBr
+      value: 
+      objectReference: {fileID: 1415511483}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1075,17 +1091,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 116df455b82374f3fbe1c59261668e17, type: 3}
---- !u!114 &1443549437 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6729255363322948533, guid: 116df455b82374f3fbe1c59261668e17, type: 3}
-  m_PrefabInstance: {fileID: 1443549436}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424cd0fcfe6204042b743702814b007b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1498381877 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4442431627644109159, guid: 7e9e1b73fc4c14483af77482cfcd05b7, type: 3}

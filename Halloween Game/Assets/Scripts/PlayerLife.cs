@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerLife : MonoBehaviour
 {
+    [SerializeField]
+    private HealthBr healthBr;
+
     private PlayerMovement move;
     private SpriteRenderer sprite;
     private BoxCollider2D bCollider;
@@ -25,6 +28,7 @@ public class PlayerLife : MonoBehaviour
         move = GetComponent<PlayerMovement>();
         sprite = GameObject.Find("PlayerSprite").GetComponent<SpriteRenderer>();
         bCollider = GetComponent<BoxCollider2D>();
+        healthBr.Maxhealth(100);
     }
 
     private void Update()
@@ -52,6 +56,7 @@ public class PlayerLife : MonoBehaviour
             iTime = iTimeMax;
             // Reduce health and resolve
             health -= 1;
+            healthBr.Health((int)(health/3f*100));
             //play hit effect
             hitSoundEffect.Play();
         }

@@ -99,7 +99,6 @@ GameObject:
   - component: {fileID: 6435924405072301338}
   - component: {fileID: 6686552585847221219}
   - component: {fileID: 4401100395264139544}
-  - component: {fileID: -2505995672242722295}
   - component: {fileID: 6305366544675023831}
   - component: {fileID: 3604921102087021533}
   - component: {fileID: 6602462446793130541}
@@ -282,6 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 238623aa345391147bc3d7cd865e9391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBr: {fileID: 0}
   iTimeMax: 1
   hitSoundEffect: {fileID: 3604921102087021533}
   lossSoundEffect: {fileID: 6602462446793130541}
@@ -297,24 +297,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ab727b589d6912409b3805576e6e25d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  candy: {fileID: 0}
+  candy2: {fileID: 0}
+  candy3: {fileID: 0}
+  candy4: {fileID: 0}
+  candy5: {fileID: 0}
   collectableGet: {fileID: 2881289011168821310}
   winSound: {fileID: 6615475991889736291}
   candiesText: {fileID: 0}
---- !u!114 &-2505995672242722295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286581604334475470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 130507e04d95f4234b978a5718760abf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  max_health: 100
-  curr_health: 0
-  healthBr: {fileID: 0}
 --- !u!82 &6305366544675023831
 AudioSource:
   m_ObjectHideFlags: 0

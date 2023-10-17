@@ -10,15 +10,11 @@ public class Winstate : MonoBehaviour
 {
     const int maxLevel1Candies = 5;
     private int currentLvl = 0;
-    Dictionary<string, int> levelCandies = new Dictionary<string, int>
-        {
-            { "1", 5 },
-            { "2", 5 },
-            { "3", 5 }
-        };
     public ItemCollector itemCollector;
     public LevelTransition levelTransition;
     private bool won;
+    [SerializeField]
+    private Timer timer;
 
     private void Start()
     {
@@ -51,6 +47,7 @@ public class Winstate : MonoBehaviour
 
     private IEnumerator playerWinLevel()
     {
+        timer.Stop = true;
         itemCollector.win();
         yield return new WaitForSeconds(3f);
         currentLvl += 1;
@@ -58,8 +55,10 @@ public class Winstate : MonoBehaviour
     }
     private IEnumerator playerWinGame()
     {
+        timer.Stop = true;
         itemCollector.win();
         yield return new WaitForSeconds(3f);
+        //GO TO WIN SCREEN
         currentLvl = 1;
         levelTransition.loadNextLevel(currentLvl);
     }

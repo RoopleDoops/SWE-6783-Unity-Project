@@ -16,7 +16,6 @@ public class ItemCollector : MonoBehaviour
     private int candies = 0;
 
     private PlayerMovement move;
-    private PlayerLife life;
 
     //Audio add in
     [SerializeField] 
@@ -31,7 +30,6 @@ public class ItemCollector : MonoBehaviour
     private void Start()
     {
         move = GetComponent<PlayerMovement>();
-        life = GetComponent<PlayerLife>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -40,7 +38,6 @@ public class ItemCollector : MonoBehaviour
             collectableGet.Play();
             Destroy(collision.gameObject);
             candies++;
-            //candiesText.text = candies.ToString();
             if (candies == 1)
             {
                 candy.SetActive(true);

@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 320, y: 120}
@@ -354,7 +354,7 @@ RectTransform:
   m_GameObject: {fileID: 6714973867403815992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 994019392196491676}
@@ -364,7 +364,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 96.6, y: -50}
+  m_AnchoredPosition: {x: 51.9, y: -15.9}
   m_SizeDelta: {x: 136.2682, y: 16.539307}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7276935057896402474
@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a530a0b12cd4114974e71ff0acf772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slidctrl: {fileID: 0}
+  slidctrl: {fileID: 7276935057896402474}
   grad:
     serializedVersion: 2
     key0: {r: 0.8301887, g: 0.090067655, b: 0.090067655, a: 1}
@@ -461,4 +461,4 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  Fill: {fileID: 0}
+  Fill: {fileID: 2581730304431890359}

@@ -18,6 +18,7 @@ public class Failstate : MonoBehaviour
     }
     private IEnumerator playerDeath()
     {
+        timer.Stop = true;
         life.killPlayer();
         yield return new WaitForSeconds(1.5f);
         transition.reloadCurrentLevel();
