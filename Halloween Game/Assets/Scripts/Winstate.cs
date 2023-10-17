@@ -58,8 +58,6 @@ public class Winstate : MonoBehaviour
         timer.Stop = true;
         itemCollector.win();
         yield return new WaitForSeconds(3f);
-        //GO TO WIN SCREEN
-        currentLvl = 1;
-        levelTransition.loadNextLevel(currentLvl);
+        SceneManager.LoadScene("End");
     }
 }
