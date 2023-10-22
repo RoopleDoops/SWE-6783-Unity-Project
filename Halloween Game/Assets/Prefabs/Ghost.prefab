@@ -175,6 +175,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   moveSpeedBase: 1.5
-  moveSpeedCatchUp: 1.5
-  catchUpDistance: 4
+  moveSpeedCatchUp: 2
+  catchUpDistance: 3
   activateDistance: 5
