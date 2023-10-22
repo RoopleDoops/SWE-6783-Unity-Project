@@ -11,6 +11,7 @@ public class PlayerLife : MonoBehaviour
     private PlayerMovement move;
     private SpriteRenderer sprite;
     private BoxCollider2D bCollider;
+    private bool playerInvincible = false; // used for level completion
     private int health = 3;
     private bool dead;
     private float iTime = 0;
@@ -40,7 +41,7 @@ public class PlayerLife : MonoBehaviour
             if (iTime <= 0f)
             {
                 iTime = 0f;
-                changeAlpha(1f); // reset player alpha
+                changeSpriteColor(1f, 1f, 1f, 1f); // reset player color
             }    
         }
     }
@@ -48,10 +49,10 @@ public class PlayerLife : MonoBehaviour
     // Hazard collision
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (iTime <= 0f && collision.gameObject.CompareTag("Hazard"))
+        if (!playerInvincible && iTime <= 0f && collision.gameObject.CompareTag("Hazard"))
         {
             // Trigger invincibility timer and transparent draw effect
-            changeAlpha(0.5f);
+            changeSpriteColor(1f, 0.5f, 0.5f, 0.5f);
             move.hitJump();
             iTime = iTimeMax;
             // Reduce health and resolve
@@ -65,6 +66,7 @@ public class PlayerLife : MonoBehaviour
     //Resetting happens in Failstate
     public void killPlayer() 
     {
+        changeSpriteColor(1f, 0.25f, 0.25f, 1f);
         Destroy(GameObject.Find("BGM"));
         dead = true;
         bCollider.enabled = false; //player falls through ground
@@ -76,10 +78,10 @@ public class PlayerLife : MonoBehaviour
     {
         return dead;
     }
-    // Alters player's sprite alpha
-    private void changeAlpha(float alpha)
+    // Alters player's sprite color
+    private void changeSpriteColor(float r, float g, float b, float alpha)
     {
-        Color newCol = new Color(sprite.color.r, sprite.color.g, sprite.color.b, alpha);
+        Color newCol = new Color(r, g, b, alpha);
         sprite.color = newCol;
     }
     public int getCurrentHealth()

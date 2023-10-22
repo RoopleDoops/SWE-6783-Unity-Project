@@ -74,7 +74,7 @@ public class ItemCollector : MonoBehaviour
     {
         Destroy(GameObject.Find("BGM"));
         Destroy(GameObject.Find("Enemies"));
-        move.enabled = false; //player loses control
+        move.controllable(false); //player loses control
         winSound.Play();
     }
     public int getCandies()

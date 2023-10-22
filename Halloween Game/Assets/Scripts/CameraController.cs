@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
 {
     Transform player;
 
-    [SerializeField] float yBuffer = 4f;
+    //[SerializeField] float yBuffer = 4f;
     // Start is called before the first frame update
     void Start()
     {
