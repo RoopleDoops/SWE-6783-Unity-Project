@@ -1,17 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tutorial : MonoBehaviour
 {
+    [SerializeField]
+    GameObject candy;
+    [SerializeField]
+    GameObject point;
     private Vector3 location;
     private bool animSwapped;
     private bool passedSpace;
+    private bool nullCandy;
 
     void Start()
     {
-        //hides space animation
+        //hides space animation and candy pointer
         GameObject.Find("space").GetComponent<Renderer>().enabled = false;
+        point.GetComponent<Image>().enabled = false;
     }
     void Update()
     {
@@ -32,5 +39,12 @@ public class Tutorial : MonoBehaviour
             passedSpace = true;
             GameObject.Find("space").GetComponent<Renderer>().enabled = false;
         }
+
+        //checks to see if first candy has been grabbed, adds arrow.
+        if(candy == null && !nullCandy)
+        {
+            point.GetComponent<Image>().enabled = true;
+            nullCandy = true;
+        }   
     }
 }
