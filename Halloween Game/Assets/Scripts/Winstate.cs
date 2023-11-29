@@ -44,7 +44,6 @@ public class Winstate : MonoBehaviour
         }
         return false;
     }
-
     private IEnumerator playerWinLevel()
     {
         timer.Stop = true;

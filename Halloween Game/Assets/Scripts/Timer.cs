@@ -1,21 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     public bool Stop { get; set; }
     float currTme = 0f;
-    float startTme = 30f;
+    float [] startTme = {20f, 30f, 40f, 50f};
+
+
     // Start is called before the first frame update lmao ok
 
     [SerializeField] Text Time_clock;
 
     void Start()
     {
-        currTme = startTme;
+        Scene currentScene = SceneManager.GetActiveScene();
+        string currentSceneName = currentScene.name;
+        int currentLvl = Convert.ToInt32(currentSceneName.Substring(currentSceneName.Length - 1));
+        currTme = startTme[currentLvl];
     }
+
 
     // Update is called once per frame
     void Update()

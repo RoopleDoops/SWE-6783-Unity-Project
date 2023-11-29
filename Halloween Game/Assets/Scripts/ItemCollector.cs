@@ -46,7 +46,7 @@ public class ItemCollector : MonoBehaviour
 
             else if (candies == 2)
             {
-                candy2.SetActive(true);
+                   candy2.SetActive(true);
 
             }
 
