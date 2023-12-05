@@ -13,6 +13,9 @@ public class Tutorial : MonoBehaviour
     private bool animSwapped;
     private bool passedSpace;
     private bool nullCandy;
+    private float pointTime = 0f;// used to make point icon blink
+    private float pointTimeMax = 0.5f; 
+    bool showPoint = false;
 
     void Start()
     {
@@ -43,8 +46,14 @@ public class Tutorial : MonoBehaviour
         //checks to see if first candy has been grabbed, adds arrow.
         if(candy == null && !nullCandy)
         {
-            point.GetComponent<Image>().enabled = true;
-            nullCandy = true;
+            pointTime -= Time.deltaTime;
+            if (pointTime <= 0f)
+            {
+                showPoint = !showPoint;
+                point.GetComponent<Image>().enabled = showPoint;
+                pointTime = pointTimeMax;
+            }
+            //nullCandy = true;
         }   
     }
 }

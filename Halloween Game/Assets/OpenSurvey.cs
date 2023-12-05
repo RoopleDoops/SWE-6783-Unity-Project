@@ -16,7 +16,7 @@ public class OpenSurvey : MonoBehaviour
     {
         if (!surveyOpened && Input.anyKey)
         {
-            Application.OpenURL("https://forms.gle/FYF33sb3RNk89NrG6");
+            //Application.OpenURL("https://forms.gle/FYF33sb3RNk89NrG6");
             surveyOpened = true;
             Application.Quit();
         }
